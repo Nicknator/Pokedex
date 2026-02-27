@@ -115,17 +115,21 @@ body {
     height: 280px;
 
     display: grid;
-    grid-template-rows: 60px 1fr; /* ← Name oben fix, Bild darunter */
+    grid-template-rows: 60px 1fr;
+    /* ← Name oben fix, Bild darunter */
     align-items: center;
     justify-items: center;
 }
 
 
 .pokemon-card h2 {
-    font-size: 22px;      /* kleiner Name */
+    font-size: 22px;
+    /* kleiner Name */
     text-align: center;
-    margin-bottom: 8px;   /* Abstand zum Bild */
-    height: 32px;         /* sorgt für gleiche Position */
+    margin-bottom: 8px;
+    /* Abstand zum Bild */
+    height: 32px;
+    /* sorgt für gleiche Position */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -135,11 +139,9 @@ body {
 
 
 .pokeImgSet {
-    width: 150px;
+    width: 100%;
     height: 150px;
-    
     object-fit: contain;
-
 }
 
 
@@ -148,7 +150,7 @@ body {
     justify-content: center;
     gap: 8px;
     margin-top: 8px;
-    
+
 }
 
 .type-icon {
@@ -156,6 +158,126 @@ body {
     height: 40px;
     object-fit: contain;
 }
+
+
+
+.poke-modal {
+    width: 300px;
+    border: none;
+    border-radius: 16px;
+    padding: 20px;
+
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+}
+
+
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.dialogField {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+}
+
+.dialog-img {
+    width: 80%;
+    height: 150px;
+    object-fit: contain;
+
+}
+
+.dialogName {
+    font-size: 15px;
+}
+
+
+
+
+/* showStats */
+.stat-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    width: 100%;
+}
+
+.stat-name {
+    width: 120px;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+
+.stat-bar {
+    flex: 1;
+    height: 12px;
+    background-color: #ddd;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-right: 8px;
+}
+
+.stat-fill {
+    height: 100%;
+    background-color: #4CAF50; 
+    border-radius: 6px 0 0 6px;
+}
+.stat-value {
+    width: 30px;
+    text-align: right;
+    font-size: 12px;
+}
+
+.dialog-body {
+    width: 100%;
+    max-width: 280px;
+}
+
+/* showStats */
+
+
+/* showEvo */
+
+.evo-chain {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.evo-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.evo-img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;    
+}
+
+/* showEvo */
+
+
+
+
+
+
 
 
 
