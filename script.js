@@ -104,6 +104,20 @@ function getPokeDialogTemplate(pokemon, bgColor) {
 
 
 
+function pokeDialog(id) {
+    const dialog = document.getElementById(`dialog-${id}`);
+    dialog.showModal();
+    showMain(id);
+}
+
+function closePokeDialog(id) {
+    const dialog = document.getElementById(`dialog-${id}`);
+    dialog.close();
+
+}
+
+
+
 
 function showMain(id) {
     let pokemon = allPokemon.find(p => p.id === id);
@@ -152,33 +166,26 @@ async function showEvoChain(id) {
     let pokemon = allPokemon.find(p => p.id === id);
     let container = document.getElementById(`dialog-body-${id}`);
 
-    
-    let speciesResponse = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}`);
-    let speciesData = await speciesResponse.json();
-
+    let speciesData = await fetchPokemonSpecies(id);
     let evoChainData = await fetchEvolutionChain(speciesData.evolution_chain.url);
 
-  
+    // Evolutionen sammeln
     let evoNames = [];
     let evo = evoChainData.chain;
-
-    
     while (evo) {
         evoNames.push(evo.species.name);
-        evo = evo.evolves_to[0]; // nur erste Entwicklung nehmen
+        evo = evo.evolves_to[0];
     }
 
-    // Bilder der Evolutions-Pokémon abrufen
-    let evoHtml = await Promise.all(evoNames.map(async name => {
-
-        // Pokemon Daten abrufen, um das Bild zu bekommen
-        let pokeResp = await fetch(`https://pokeapi.co/api/v2/pokemon/${name}`);
-        let pokeData = await pokeResp.json();
+    // Bilder aus allPokemon holen, falls schon geladen
+    let evoHtml = evoNames.map(name => {
+        let pokeData = allPokemon.find(p => p.name === name);
+        if (!pokeData) return ''; // falls Pokémon noch nicht geladen
         return `<div class="evo-card">
                     <img src="${pokeData.sprites.other['official-artwork'].front_default}" class="evo-img">
-                    <p>${name.toUpperCase()}</p>
+                    <p>${pokeData.name.toUpperCase()}</p>
                 </div>`;
-    }));
+    });
 
     container.innerHTML = `
         <h3>Evolution Chain</h3>
@@ -192,33 +199,32 @@ async function showEvoChain(id) {
 
 
 
+function searchPokemon(query) {
+    query = query.toLowerCase().trim();
+    let filteredPokemon = [];
+    
+    // normale for-Schleife statt filter + forEach
+    for (let i = 0; i < allPokemon.length; i++) {
+        let p = allPokemon[i];
+        if (p.name.toLowerCase().includes(query) || p.id.toString() === query) {
+            filteredPokemon.push(p);
+        }
+    }
 
+    const content = document.getElementById("content");
+    content.innerHTML = "";
 
-
-
-
-
-
-function pokeDialog(id) {
-    const dialog = document.getElementById(`dialog-${id}`);
-    dialog.showModal();
-    showMain(id); 
+    for (let i = 0; i < filteredPokemon.length; i++) {
+        let pokemon = filteredPokemon[i];
+        // Species abrufen, um Farbe zu setzen
+        fetchPokemonSpecies(pokemon.id).then(species => {
+            renderPokemon(pokemon, species);
+        });
+    }
 }
 
-function closePokeDialog(id) {
-    const dialog = document.getElementById(`dialog-${id}`);
-    dialog.close();
-
-}
 
 
-
-
-
-
-// Poke Anatomie aufrufen über Dialog
-
-// Poke Anatomie anzeigen lassen
 
 
 

@@ -13,8 +13,9 @@
     <header class="header">
         <div class="header-inner">
             <img src="img/pokedexLogo.png" alt="Pokedexlogo" class="header-img">
-            <input type="text" class="inputField-container">
-        </div>  
+            <input id="searchInput" type="text" 
+            placeholder="Search..." oninput="searchPokemon(this.value)" class="search-container">
+        </div>
     </header>
 
 
@@ -26,13 +27,13 @@
             <main id="content" class="contentSet"></main>
 
         </div>
-        
+
 
 
     </div>
 
-    
-    
+
+
 
 
 
