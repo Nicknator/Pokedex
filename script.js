@@ -1,6 +1,5 @@
 let allPokemon = [];
 
-
 // Init Onload abrufen
 async function init() {
     for (let i = 1; i <= 28; i++) {
@@ -11,8 +10,6 @@ async function init() {
         allPokemon.push(pokemon);
     }
 }
-
-
 
 //Pokedex Daten abrufen, Herzstück des ganzen
 async function fetchPokemon(id) {
@@ -30,75 +27,15 @@ async function fetchPokemonSpecies(id) {
 
 
 //Pokedex Daten anzeigen lassen
-
 function renderPokemon(pokemon, species) {
-
     let content = document.getElementById("content");
-    let image = pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.front_default;
     let bgColor = species.color.name;
 
-
-
-    content.innerHTML += `
-    <div class="pokemon-card" onclick="pokeDialog(${pokemon.id})">
-        <h2 class="h2-Field">${pokemon.name.toUpperCase()}</h2>
-        <img src="${image}" class="pokeImgSet" style="background-color: ${bgColor}">
-
-        <div class="type-icons">
-            <img src="https://veekun.com/dex/media/types/en/${pokemon.types[0].type.name}.png" class="type-icon">
-
-            ${pokemon.types[1] ? `
-                <img src="https://veekun.com/dex/media/types/en/${pokemon.types[1].type.name}.png" class="type-icon">
-            ` : ''}</div>
-    </div>
-    ${getPokeDialogTemplate(pokemon, bgColor)}
-    
-`;
-
+    content.innerHTML += getPokeCardTemplate(pokemon, bgColor);
 }
 
 
 
-
-
-function getPokeDialogTemplate(pokemon, bgColor) {
-
-    let image = pokemon.sprites.other['official-artwork'].front_default;
-
-    return `
-    
-    <dialog id="dialog-${pokemon.id}" class="poke-modal">
-        <div class="dialog-content">
-        <h2 class="dialogName">${pokemon.name.toUpperCase()}</h2>
-        <div class="dialogField">
-        <img src="${image}" class="dialog-img" style="background-color: ${bgColor}" >
-        </div>
-
-        <div class="type-icons">
-            <img src="https://veekun.com/dex/media/types/en/${pokemon.types[0].type.name}.png" class="type-icon">
-
-            ${pokemon.types[1] ? `
-        <img src="https://veekun.com/dex/media/types/en/${pokemon.types[1].type.name}.png" class="type-icon">
-            ` : ''}</div>
-        
-        <div class="dialog-buttons">
-            <button class="setButton" onclick="showMain(${pokemon.id})">Main</button>
-            <button class="setButton" onclick="showStats(${pokemon.id})">Stats</button>
-            <button class="setButton" onclick="showEvoChain(${pokemon.id})">Evo Chain</button>
-        </div>
-
-        <div id="dialog-body-${pokemon.id}" class="dialog-body">
-            
-        </div>
-
-        <button onclick="closePokeDialog(${pokemon.id})" class="closeBtn">
-            X
-        </button>
-
-       </div>
-    </dialog>
-    `;
-}
 
 
 
@@ -120,65 +57,33 @@ function closePokeDialog(id) {
 function showMain(id) {
     let pokemon = allPokemon.find(p => p.id === id);
     let container = document.getElementById(`dialog-body-${id}`);
-
-    container.innerHTML = `
-    <div class="main-row">
-        <span class="main-label">Größe:</span>
-        <span class="main-value">${pokemon.height / 10} m</span>
-    </div>
-
-    <div class="main-row">
-        <span class="main-label">Gewicht:</span>
-        <span class="main-value">${pokemon.weight / 10} kg</span>
-    </div>
-
-    <div class="main-row">
-        <span class="main-label">Base Experience:</span>
-        <span class="main-value">${pokemon.base_experience}</span>
-    </div>
-
-    <div class="main-row">
-        <span class="main-label">Ability:</span>
-        <span class="main-value">${pokemon.abilities[0].ability.name.toUpperCase()}</span>
-    </div>
-`;
+    container.innerHTML = getShowMainTemplate(pokemon);
 }
-
 
 function showStats(id) {
     let pokemon = allPokemon.find(p => p.id === id);
     let container = document.getElementById(`dialog-body-${id}`);
-
-    let stats = {};
-    pokemon.stats.forEach(s => {
-        stats[s.stat.name] = s.base_stat;
-    });
-
-    container.innerHTML = `
-    ${Object.keys(stats).map(stat => `
-        <div class="stat-row">
-            <span class="stat-name">${stat.replace("-", " ")}</span>
-            <div class="stat-bar">
-                <div class="stat-fill" style="width: ${stats[stat]}%"></div>
-            </div>
-            <span class="stat-value">${stats[stat]}</span>
-        </div>
-    `).join('')}
-`;
+    let stats = pokemon.stats; // Array von Stats
+    let html = "";
+    for (let i = 0; i < stats.length; i++) {
+        let statName = stats[i].stat.name.replace("-", " ");
+        let statValue = stats[i].base_stat;
+        html += getShowStatsTemplate(statName, statValue);
+    } container.innerHTML = html;
 }
+
+
+
 
 
 
 
 
 async function showEvoChain(id) {
-    let pokemon = allPokemon.find(p => p.id === id);
     let container = document.getElementById(`dialog-body-${id}`);
-
     let speciesData = await fetchPokemonSpecies(id);
     let evoChainData = await fetchEvolutionChain(speciesData.evolution_chain.url);
 
-    // Evolutionen sammeln
     let evoNames = [];
     let evo = evoChainData.chain;
     while (evo) {
@@ -186,20 +91,14 @@ async function showEvoChain(id) {
         evo = evo.evolves_to[0];
     }
 
-    // Bilder aus allPokemon holen, falls schon geladen
-    let evoHtml = evoNames.map(name => {
-        let pokeData = allPokemon.find(p => p.name === name);
-        if (!pokeData) return ''; // falls Pokémon noch nicht geladen
-        return `<div class="evo-card">
-                    <img src="${pokeData.sprites.other['official-artwork'].front_default}" class="evo-img">
-                    <p class="pokeName">${pokeData.name.toUpperCase()}</p>
-                </div>`;
-    });
+    // Pokemon-Objekte für Template zusammenstellen
+    let evoPokemon = [];
+    for (let i = 0; i < evoNames.length; i++) {
+        let pokeData = allPokemon.find(p => p.name === evoNames[i]);
+        if (pokeData) evoPokemon.push(pokeData);
+    }
 
-    container.innerHTML = `
-        <h3 class="evoName">Evolution Chain</h3>
-        <div class="evo-chain">${evoHtml.join('')}</div>
-    `;
+    container.innerHTML = getEvoChainTemplate(evoPokemon);
 }
 
 
@@ -208,9 +107,6 @@ async function fetchEvolutionChain(url) {
     let data = await response.json();
     return data;
 }
-
-
-
 
 
 
