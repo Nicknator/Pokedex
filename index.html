@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>Pokedex</title>
 
@@ -12,20 +13,22 @@
 <body onload="init()">
     <header class="header">
         <div class="header-inner">
-            <img src="img/pokedexLogo.png" alt="Pokedexlogo" class="header-img">
-            <input id="searchInput" type="text" 
-            placeholder="Search..." oninput="searchPokemon(this.value)" class="search-container">
+            <img src="img/pokeballLogo.png" alt="Pokedexlogo" class="header-img">
+            <input id="searchInput" type="text" placeholder="Search..." oninput="searchPokemon(this.value)"
+                class="search-container">
         </div>
     </header>
 
 
 
     <div class="container">
-        <h1>Pokemon</h1>
+        <div class="h1-Field">
+            <h1>Pokedex</h1>
+
+        </div>
+
         <div class="content-wrapper">
-
             <main id="content" class="contentSet"></main>
-
         </div>
 
 
