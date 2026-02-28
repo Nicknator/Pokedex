@@ -2,13 +2,23 @@ let allPokemon = [];
 
 // Init Onload abrufen
 async function init() {
+    let pokemonPromises = [];
+    let speciesPromises = [];
+
     for (let i = 1; i <= 28; i++) {
-        let pokemon = await fetchPokemon(i);
-        let species = await fetchPokemonSpecies(i);
-        renderPokemon(pokemon, species);
-        console.log(pokemon, species);
-        allPokemon.push(pokemon);
+        pokemonPromises.push(fetchPokemon(i));
+        speciesPromises.push(fetchPokemonSpecies(i));
     }
+
+    let allPokemonData = await Promise.all(pokemonPromises);
+    let allSpeciesData = await Promise.all(speciesPromises);
+
+    for (let i = 0; i < allPokemonData.length; i++) {
+        renderPokemon(allPokemonData[i], allSpeciesData[i]);
+        allPokemon.push(allPokemonData[i]);
+    }
+
+    console.log(allPokemonData, allSpeciesData);
 }
 
 //Pokedex Daten abrufen, Herzstück des ganzen

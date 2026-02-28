@@ -417,3 +417,166 @@ body {
     font-weight: 400;
     font-size: 18px;
 }
+
+
+
+@media (min-width: 768px) and (max-width: 1240px) {
+
+    .contentSet {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+    }
+
+    .pokemon-card {
+        height: 260px;
+        padding: 14px;
+    }
+
+    .pokemon-card h2 {
+        font-size: 18px;
+        height: 36px;
+    }
+
+    .pokeImgSet {
+        height: 140px;
+    }
+
+    .type-icon {
+        width: 32px;
+        height: 32px;
+    }
+
+    .header {
+        height: 100px;
+    }
+
+    .header-inner {
+        height: 100px;
+    }
+
+    .header-img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .h1-Field {
+        font-size: 20px;
+    }
+
+    .content-wrapper {
+        margin: 40px auto;
+        padding: 0 20px;
+    }
+
+    .poke-modal {
+        width: 80%;
+        max-width: 420px;
+    }
+
+    .dialog-img {
+        height: 140px;
+    }
+
+    .footer {
+        font-size: 16px;
+        height: 90px;
+    }
+}
+
+
+
+@media (min-width: 320px) and (max-width: 767px) {
+
+    .contentSet {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .pokemon-card {
+        height: 220px;
+        padding: 10px;
+    }
+
+    .pokemon-card h2 {
+        font-size: 14px;
+        height: 28px;
+    }
+
+    .pokeImgSet {
+        height: 110px;
+    }
+
+    .type-icon {
+        width: 26px;
+        height: 26px;
+    }
+
+    .header {
+        height: 80px;
+        padding: 0 12px;
+    }
+
+    .header-inner {
+        height: 80px;
+        padding: 0;
+    }
+
+    .header-img {
+        width: 65px;
+        height: 65px;
+    }
+
+    .h1-Field {
+        font-size: 18px;
+        margin: 10px 0;
+        -webkit-text-stroke: 1px #2A75BB;
+    }
+
+    .content-wrapper {
+        margin: 30px auto;
+        padding: 0 12px;
+    }
+
+    .poke-modal {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .dialog-img {
+        height: 120px;
+    }
+
+    .dialogName {
+        font-size: 18px;
+    }
+
+    .main-row,
+    .stat-row {
+        font-size: 13px;
+    }
+
+    .stat-name {
+        width: 90px;
+    }
+
+    .evo-chain {
+        flex-wrap: wrap;
+    }
+
+    .evo-img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .footer {
+        height: auto;
+        padding: 20px 0;
+        font-size: 14px;
+    }
+
+    .footer-inner {
+        flex-direction: column;
+        gap: 8px;
+        align-items: center;
+    }
+}
