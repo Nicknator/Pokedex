@@ -24,40 +24,36 @@ function getPokeCardTemplate(pokemon, bgColor) {
 
 
 function getPokeDialogTemplate(pokemon, bgColor) {
-
     let image = pokemon.sprites.other['official-artwork'].front_default;
 
     return `
-    
-    <dialog id="dialog-${pokemon.id}" class="poke-modal">
+    <dialog id="dialog-${pokemon.id}" class="poke-modal" onclick="if(event.target === this) closePokeDialog(${pokemon.id})">
         <div class="dialog-content">
-        <h2 class="dialogName">${pokemon.name.toUpperCase()}</h2>
-        <div class="dialogField">
-        <img src="${image}" class="dialog-img" style="background-color: ${bgColor}" >
-        </div>
-
-        <div class="type-icons">
-            <img src="https://veekun.com/dex/media/types/en/${pokemon.types[0].type.name}.png" class="type-icon">
-
-            ${pokemon.types[1] ? `
-        <img src="https://veekun.com/dex/media/types/en/${pokemon.types[1].type.name}.png" class="type-icon">
-            ` : ''}</div>
-        
-        <div class="dialog-buttons">
-            <button class="setButton" onclick="showMain(${pokemon.id})">Main</button>
-            <button class="setButton" onclick="showStats(${pokemon.id})">Stats</button>
-            <button class="setButton" onclick="showEvoChain(${pokemon.id})">Evo Chain</button>
-        </div>
-
-        <div id="dialog-body-${pokemon.id}" class="dialog-body">
+            <h2 class="dialogName">${pokemon.name.toUpperCase()}</h2>
+            <div class="dialogField">
+                <img src="${image}" class="dialog-img" style="background-color: ${bgColor}">
+            </div>
             
+            <div class="nav-buttons">
+                <button class="switchPokemon" onclick="prevPokemon(${pokemon.id})">◀</button>
+                <button class="switchPokemon" onclick="nextPokemon(${pokemon.id})">▶</button>
+            </div>
+
+            <div class="type-icons">
+                <img src="https://veekun.com/dex/media/types/en/${pokemon.types[0].type.name}.png" class="type-icon">
+                ${pokemon.types[1] ? `<img src="https://veekun.com/dex/media/types/en/${pokemon.types[1].type.name}.png" class="type-icon">` : ''}
+            </div>
+            
+            <div class="dialog-buttons">
+                <button class="setButton" onclick="showMain(${pokemon.id})">Main</button>
+                <button class="setButton" onclick="showStats(${pokemon.id})">Stats</button>
+                <button class="setButton" onclick="showEvoChain(${pokemon.id})">Evo Chain</button>
+            </div>
+
+            <div id="dialog-body-${pokemon.id}" class="dialog-body"></div>
+
+            <button onclick="closePokeDialog(${pokemon.id})" class="closeBtn">X</button>
         </div>
-
-        <button onclick="closePokeDialog(${pokemon.id})" class="closeBtn">
-            X
-        </button>
-
-       </div>
     </dialog>
     `;
 }
@@ -67,12 +63,12 @@ function getPokeDialogTemplate(pokemon, bgColor) {
 function getShowMainTemplate(pokemon) {
     return `
     <div class="main-row">
-        <span class="main-label">Größe:</span>
+        <span class="main-label">Height:</span>
         <span class="main-value">${pokemon.height / 10} m</span>
     </div>
 
     <div class="main-row">
-        <span class="main-label">Gewicht:</span>
+        <span class="main-label">Weight:</span>
         <span class="main-value">${pokemon.weight / 10} kg</span>
     </div>
 

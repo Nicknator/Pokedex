@@ -5,9 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link id="favicon" rel="icon" type="image/png" href="img/pokedexLogo.png">
     <link rel="stylesheet" href="style.css">
     <title>Pokedex</title>
-
 </head>
 
 <body onload="init()">
@@ -24,24 +24,18 @@
     <div class="container">
         <div class="h1-Field">
             <h1>Pokedex</h1>
-
         </div>
 
         <div class="content-wrapper">
             <main id="content" class="contentSet"></main>
         </div>
 
-
-
+        <button onclick="fetchNewPokemon(); loadMorePokemon(this) " class="loadNewPokedex"> Load new Pokemons</button>
+        <div id="loadingSpinner" style="display:none;"></div>
+        <div id="pokedex">
+            <!-- Bereits vorhandene Pokémon hier -->
+        </div>
     </div>
-
-
-
-
-
-
-
-
 
     <footer class="footer">
         <div class="footer-inner">
@@ -53,6 +47,7 @@
 
     <script src="script.js"></script>
     <script src="template.js"></script>
+
 </body>
 
 </html>
