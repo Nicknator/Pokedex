@@ -14,12 +14,14 @@
     <header class="header">
         <div class="header-inner">
             <img src="img/pokeballLogo.png" alt="Pokedexlogo" class="header-img">
-            <input id="searchInput" type="text" placeholder="Search..." oninput="searchPokemon(this.value)"
-                class="search-container">
+            <div class="search-field">
+                <input id="searchInput" type="text" placeholder="Search Pokémon..." class="search-container">
+                <button class="search-container" onclick="handleSearch()">Search</button >
+
+            </div>
+
         </div>
     </header>
-
-
 
     <div class="container">
         <div class="h1-Field">
@@ -33,7 +35,6 @@
         <button onclick="fetchNewPokemon(); loadMorePokemon(this) " class="loadNewPokedex"> Load new Pokemons</button>
         <div id="loadingSpinner" style="display:none;"></div>
         <div id="pokedex">
-            <!-- Bereits vorhandene Pokémon hier -->
         </div>
     </div>
 
