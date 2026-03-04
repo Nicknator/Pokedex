@@ -23,6 +23,7 @@ async function fetchNewPokemon() {
     }
 }
 
+
 async function loadMorePokemon(btn) {
     btn.disabled = true;
     document.getElementById("loadingSpinner").style.display = "flex";
@@ -125,13 +126,16 @@ async function fetchEvolutionChain(url) {
 }
 
 function searchPokemon(query) {
-    const content = document.getElementById("content"); 
+    const content = document.getElementById("content");
+    const loadBtn = document.querySelector(".loadNewPokedex");
     content.innerHTML = "";
     const filteredPokemon = allPokemon.filter(p => p.name.toLowerCase().includes(query) || p.id.toString() === query);
     if (filteredPokemon.length === 0) {
         content.innerHTML = "<p>No Pokémon found</p>";
+        loadBtn.style.display = "none";
         return;
     }
+    loadBtn.style.display = "none";
     filteredPokemon.forEach(pokemon => {
         fetchPokemonSpecies(pokemon.id).then(species => {
             renderPokemon(pokemon, species);
@@ -146,10 +150,24 @@ function handleSearch() {
         .value
         .trim()
         .toLowerCase();
+    
+    const messageEl = document.getElementById("searchMessage");
+    messageEl.textContent = ""; 
     if (query.length < 3) {
-        alert("Please enter at least 3 characters");
+        messageEl.textContent = "Please enter at least 3 characters";
+        // loadBtn.style.display = "block";
         return;
-    } searchPokemon(query);
+    }
+    searchPokemon(query);
+}
+
+
+
+
+function setActive(clickedButton) {
+    const buttons = clickedButton.parentElement.querySelectorAll(".setButton");
+    buttons.forEach(btn => btn.classList.remove("active"));
+    clickedButton.classList.add("active");
 }
 
 

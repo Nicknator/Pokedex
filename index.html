@@ -13,11 +13,13 @@
 <body onload="init()">
     <header class="header">
         <div class="header-inner">
-            <img src="img/pokeballLogo.png" alt="Pokedexlogo" class="header-img">
+            <a href="index.html" class="header-img" >
+                <img src="img/pokeballLogo.png" alt="Pokedexlogo" class="header-img">
+            </a>
             <div class="search-field">
                 <input id="searchInput" type="text" placeholder="Search Pokémon..." class="search-container">
-                <button class="search-container" onclick="handleSearch()">Search</button >
-
+                <button class="search-container" onclick="handleSearch()">Search</button>
+                <p id="searchMessage" class="search-message"></p>
             </div>
 
         </div>

@@ -35,9 +35,14 @@ function getPokeDialogTemplate(pokemon, bgColor) {
             </div>
             
             <div class="dialog-buttons">
-                <button class="setButton" onclick="showMain(${pokemon.id})">Main</button>
-                <button class="setButton" onclick="showStats(${pokemon.id})">Stats</button>
-                <button class="setButton" onclick="showEvoChain(${pokemon.id})">Evo Chain</button>
+                <button class="setButton"
+                onclick="setActive(this); showMain(${pokemon.id})">Main</button>
+
+                <button class="setButton"
+                onclick="setActive(this); showStats(${pokemon.id})">Stats</button>
+
+                <button class="setButton"
+                onclick="setActive(this); showEvoChain(${pokemon.id})">Evo Chain</button>
             </div>
             <div id="dialog-body-${pokemon.id}" class="dialog-body"></div>
             <button onclick="closePokeDialog(${pokemon.id})" class="closeBtn">X</button>
