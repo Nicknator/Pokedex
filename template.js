@@ -14,6 +14,7 @@ function getPokeCardTemplate(pokemon, bgColor) {
     ${getPokeDialogTemplate(pokemon, bgColor)}   `;
 }
 
+
 function getPokeDialogTemplate(pokemon, bgColor) {
     let image = pokemon.sprites.other['official-artwork'].front_default;
     return `
@@ -52,7 +53,6 @@ function getPokeDialogTemplate(pokemon, bgColor) {
 }
 
 
-
 function getShowMainTemplate(pokemon) {
     return `
     <div class="main-row">
@@ -73,6 +73,7 @@ function getShowMainTemplate(pokemon) {
     </div>`;
 }
 
+
 function getShowStatsTemplate(statName, statValue) {
     return `
         <div class="stat-row">
@@ -83,6 +84,7 @@ function getShowStatsTemplate(statName, statValue) {
             <span class="stat-value">${statValue}</span>
         </div>`;
 }
+
 
 function getEvoChainTemplate(evoPokemon) {
     let evoHtml = "";

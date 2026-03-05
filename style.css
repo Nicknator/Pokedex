@@ -6,8 +6,6 @@
 }
 
 
-
-
 body {
     display: flex;
     flex-direction: column;
@@ -15,6 +13,7 @@ body {
     margin: 0;
     font-family: 'Nunito', sans-serif;
 }
+
 
 .pokemonFavicon {
     width: 20px;
@@ -35,7 +34,6 @@ body {
 }
 
 
-
 .header-inner {
     width: 100%;
     max-width: 1440px;
@@ -49,8 +47,6 @@ body {
 }
 
 
-
-
 .header-img {
     width: 120px;
     height: 120px;
@@ -59,10 +55,6 @@ body {
     margin: 0 auto;
     cursor: pointer;
 }
-
-
-
-
 
 
 .search-field {
@@ -76,12 +68,14 @@ body {
     padding: 5px
 }
 
+
 .search-container {
     height: 25px;
     border-radius: 10px;
     padding: 0 10px;
     font-size: 16px;
 }
+
 
 .search-message {
     color: red;
@@ -100,12 +94,6 @@ body {
     font-weight: 900;
 }
 
-
-
-
-
-
-
 .container {
     display: flex;
     flex-direction: column;
@@ -115,9 +103,6 @@ body {
     margin: 0 auto;
     flex: 1;
 }
-
-
-
 
 .content-wrapper {
     flex: 1;
@@ -132,6 +117,7 @@ body {
     box-sizing: border-box;
 }
 
+
 .contentSet {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
@@ -141,8 +127,6 @@ body {
     width: 100%;
 }
 
-
-/*  */
 
 .pokemon-card {
     background-color: #f1f1f1;
@@ -169,6 +153,7 @@ body {
 
 }
 
+
 .h2-Field {
     font-weight: 800;
 }
@@ -179,12 +164,11 @@ body {
     cursor: pointer;
 }
 
+
 .pokemon-card:hover {
     transform: scale(1.05);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
-
-
 
 
 .pokeImgSet {
@@ -201,6 +185,7 @@ body {
     object-fit: contain;
 
 }
+
 
 .type-icon {
     width: 55px;
@@ -236,12 +221,14 @@ body {
 
 }
 
+
 .dialogField {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
 }
+
 
 .dialog-img {
     width: 90%;
@@ -250,10 +237,12 @@ body {
 
 }
 
+
 .dialogName {
     font-size: 26px;
     font-weight: 600;
 }
+
 
 .dialog-buttons {
     display: flex;
@@ -267,6 +256,7 @@ body {
 
 }
 
+
 .setButton.active {
     background-color: #16a9d1;
     color: white;
@@ -277,8 +267,6 @@ body {
     transition: all 0.15s ease-in-out;
 
 }
-
-
 
 
 .closeBtn {
@@ -299,6 +287,7 @@ body {
     z-index: 10;
     transition: transform 0.2s;
 }
+
 
 .closeBtn:hover {
     transform: scale(1.2);
@@ -321,6 +310,7 @@ body {
     transition: all 0.15s ease-in-out;
 }
 
+
 .switchPokemon:hover {
     transform: scale(1.1);
     box-shadow:
@@ -328,14 +318,13 @@ body {
         inset 0 2px 6px rgba(255, 255, 255, 0.4);
 }
 
+
 .switchPokemon:active {
     transform: scale(0.95);
     box-shadow:
         0 2px 4px rgba(0, 0, 0, 0.6),
         inset 0 1px 3px rgba(0, 0, 0, 0.4);
 }
-
-
 
 /* showMain */
 .main-row {
@@ -348,12 +337,14 @@ body {
     font-size: 16px;
 }
 
+
 .main-label {
     font-weight: 700;
     color: #222;
     min-width: 120px;
     text-align: left;
 }
+
 
 .main-value {
     font-weight: 600;
@@ -364,7 +355,6 @@ body {
 
 /* showMain */
 
-
 /* showStats */
 .stat-row {
     display: flex;
@@ -374,12 +364,14 @@ body {
     width: 100%;
 }
 
+
 .stat-name {
     width: 120px;
     /* text-transform: capitalize; */
     font-size: 16px;
     font-weight: 600;
 }
+
 
 .stat-bar {
     flex: 1;
@@ -390,11 +382,13 @@ body {
     margin-right: 8px;
 }
 
+
 .stat-fill {
     height: 100%;
     background-color: #f4c430;
     border-radius: 6px 0 0 6px;
 }
+
 
 .stat-value {
     width: 30px;
@@ -405,9 +399,7 @@ body {
 
 /* showStats */
 
-
 /* showEvo */
-
 .evo-chain {
     display: flex;
     gap: 8px;
@@ -415,6 +407,7 @@ body {
     align-items: center;
     margin-top: 12px;
 }
+
 
 .evo-card {
     display: flex;
@@ -424,6 +417,7 @@ body {
     gap: 4px;
 }
 
+
 .evo-img {
     width: 90px;
     height: 90px;
@@ -431,9 +425,11 @@ body {
     transition: transform 0.2s;
 }
 
+
 .evo-card:hover .evo-img {
     transform: scale(1.1);
 }
+
 
 .evoName {
     font-size: 16px;
@@ -441,14 +437,13 @@ body {
 
 }
 
+
 .pokeName {
     font-size: 16px;
     font-weight: 600;
 }
 
 /* showEvo */
-
-
 
 .dialog-body {
     display: flex;
@@ -462,11 +457,6 @@ body {
     gap: 10px;
     overflow-y: auto;
 }
-
-
-
-
-
 
 .loadNewPokedex {
     position: relative;
@@ -497,6 +487,7 @@ body {
     z-index: 999;
 }
 
+
 #loadingSpinner::after {
     content: "";
     width: 40px;
@@ -507,6 +498,7 @@ body {
     animation: spin 1s linear infinite;
 }
 
+
 @keyframes spin {
     to {
         transform: rotate(360deg);
@@ -514,20 +506,13 @@ body {
 }
 
 
-
-
-
-
 .footer-inner {
     width: 100%;
     max-width: 1440px;
     padding: 0 10px;
-
     display: flex;
     justify-content: space-evenly;
 }
-
-
 
 
 .footer {
@@ -544,7 +529,6 @@ body {
 }
 
 
-
 @media (min-width: 768px) and (max-width: 1240px) {
 
     .contentSet {
@@ -559,60 +543,71 @@ body {
         padding: 14px;
     }
 
+
     .pokemon-card h2 {
         font-size: 18px;
         height: 36px;
     }
 
+
     .pokeImgSet {
         height: 140px;
     }
+
 
     .type-icon {
         width: 40px;
         height: 40px;
     }
 
+
     .dialog-body {
         width: 80%;
     }
+
 
     .header {
         height: 100px;
     }
 
+
     .header-inner {
         height: 100px;
     }
+
 
     .header-img {
         width: 90px;
         height: 90px;
     }
 
+
     .h1-Field {
         font-size: 20px;
     }
+
 
     .content-wrapper {
         margin: 40px auto;
         padding: 0 20px;
     }
 
+
     .poke-modal {
         width: 80%;
         max-width: 420px;
     }
+
 
     .dialog-img {
         height: 140px;
         width: 90%;
     }
 
+
     .evo-chain {
         gap: 3px;
     }
-
 
 
     .footer {
@@ -622,9 +617,7 @@ body {
 }
 
 
-
 @media (min-width: 320px) and (max-width: 767px) {
-
 
 
     .contentSet {
@@ -633,39 +626,47 @@ body {
         justify-content: center;
     }
 
+
     .pokemon-card {
         height: 220px;
         padding: 10px;
     }
+
 
     .pokemon-card h2 {
         font-size: 16px;
         height: 28px;
     }
 
+
     .pokeImgSet {
         height: 110px;
     }
+
 
     .type-icon {
         width: 35px;
         height: 35px;
     }
 
+
     .header {
         height: 80px;
         padding: 0 12px;
     }
+
 
     .header-inner {
         height: 80px;
         padding: 0;
     }
 
+
     .header-img {
         width: 65px;
         height: 65px;
     }
+
 
     .h1-Field {
         font-size: 18px;
@@ -673,10 +674,12 @@ body {
         -webkit-text-stroke: 1px #2A75BB;
     }
 
+
     .content-wrapper {
         margin: 30px auto;
         padding: 0 12px;
     }
+
 
     .poke-modal {
         width: 300px;
@@ -684,18 +687,20 @@ body {
         overflow-x: hidden;
     }
 
+
     .dialog-img {
         height: 120px;
         width: 90%;
     }
 
+
     .dialog-body {
         width: 100%;
     }
 
+
     .setButton {
         width: 75px;
-
     }
 
     .dialogName {
@@ -712,9 +717,11 @@ body {
         width: 90px;
     }
 
+
     .evo-chain {
         flex-wrap: wrap;
     }
+
 
     .evo-img {
         width: 60px;
@@ -732,6 +739,7 @@ body {
         font-size: 16px;
     }
 
+    
     .footer-inner {
         flex-direction: column;
         gap: 8px;

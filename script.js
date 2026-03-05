@@ -51,7 +51,6 @@ function renderPokemon(pokemon, species) {
 }
 
 
-
 function togglePokeDialog(id) {
     const dialog = document.getElementById(`dialog-${id}`);
     const container = dialog.querySelector(".dialog-content");
@@ -105,11 +104,9 @@ function showStats(id) {
 
 async function showEvoChain(id) {
     let container = document.getElementById(`dialog-body-${id}`);
-    let data = await fetchPokemonData(id);
-    let speciesData = data.species;
+    let data = await fetchPokemonData(id); let speciesData = data.species;
     let evoChainData = await fetchEvolutionChain(speciesData.evolution_chain.url);
-    let evoNames = [];
-    let evo = evoChainData.chain;
+    let evoNames = []; let evo = evoChainData.chain;
     while (evo) {
         evoNames.push(evo.species.name);
         evo = evo.evolves_to[0];
@@ -147,14 +144,11 @@ function searchPokemon(query) {
 async function handleSearch() {
     const query = document.getElementById("searchInput").value.trim().toLowerCase();
     const loadBtn = document.querySelector(".loadNewPokedex");
-    const messageEl = document.getElementById("searchMessage"); messageEl.textContent = "";
-    document.getElementById("content").innerHTML = "";
+    const messageEl = document.getElementById("searchMessage"); messageEl.textContent = ""; document.getElementById("content").innerHTML = "";
     if (query.length === 0 || query.length < 3) {
         if (query.length > 0) messageEl.textContent = "Please enter at least 3 characters"; loadBtn.style.display = "block";
-        for (const p of allPokemon) { const data = await fetchPokemonData(p.id); renderPokemon(data.pokemon, data.species); }
-        return;
-    }
-    loadBtn.style.display = "none";
+        for (const p of allPokemon) { const data = await fetchPokemonData(p.id); renderPokemon(data.pokemon, data.species); }return;
+    } loadBtn.style.display = "none";
     for (const p of allPokemon) {
         if (p.name.toLowerCase().includes(query) || p.id.toString() === query) {
             const data = await fetchPokemonData(p.id); renderPokemon(data.pokemon, data.species);
