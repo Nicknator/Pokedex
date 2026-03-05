@@ -2,7 +2,7 @@
 function getPokeCardTemplate(pokemon, bgColor) {
     let image = pokemon.sprites.other['official-artwork'].front_default || pokemon.sprites.front_default;
     return `
-    <div class="pokemon-card" onclick="pokeDialog(${pokemon.id})">
+    <div class="pokemon-card" onclick="togglePokeDialog(${pokemon.id})">
         <h2 class="h2-Field">${pokemon.name.toUpperCase()}</h2>
         <img src="${image}" class="pokeImgSet" style="background-color: ${bgColor}">
         <div class="type-icons">
@@ -25,8 +25,8 @@ function getPokeDialogTemplate(pokemon, bgColor) {
             </div>
             
             <div class="nav-buttons">
-                <button class="switchPokemon" onclick="prevPokemon(${pokemon.id})">◀</button>
-                <button class="switchPokemon" onclick="nextPokemon(${pokemon.id})">▶</button>
+                <button class="switchPokemon" onclick="switchPokemon(${pokemon.id}, 'prevId')">◀</button>
+                <button class="switchPokemon" onclick="switchPokemon(${pokemon.id}, 'nextId')">▶</button>
             </div>
 
             <div class="type-icons">
@@ -45,7 +45,7 @@ function getPokeDialogTemplate(pokemon, bgColor) {
                 onclick="setActive(this); showEvoChain(${pokemon.id})">Evo Chain</button>
             </div>
             <div id="dialog-body-${pokemon.id}" class="dialog-body"></div>
-            <button onclick="closePokeDialog(${pokemon.id})" class="closeBtn">X</button>
+            <button onclick="togglePokeDialog(${pokemon.id})" class="closeBtn">X</button>
         </div>
     </dialog>
     `;
